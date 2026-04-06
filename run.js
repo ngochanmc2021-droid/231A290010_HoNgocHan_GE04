@@ -1,2 +1,0 @@
-renderGenres();
-renderMovies(movies);
