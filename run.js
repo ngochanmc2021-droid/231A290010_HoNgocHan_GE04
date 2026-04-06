@@ -1,0 +1,2 @@
+renderGenres();
+renderMovies(movies);
