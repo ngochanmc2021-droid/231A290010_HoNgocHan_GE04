@@ -1,0 +1,129 @@
+/* CSS Variables cho Light/Dark Mode */
+:root {
+    --bg-color: #f4f4f9;
+    --text-color: #333333;
+    --header-bg: #ffffff;
+    --card-bg: #ffffff;
+    --sidebar-bg: #ffffff;
+    --border-color: #dddddd;
+    --primary-color: #e50914;
+    --shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+body.dark-mode {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --header-bg: #1e1e1e;
+    --card-bg: #1e1e1e;
+    --sidebar-bg: #1e1e1e;
+    --border-color: #333333;
+    --shadow: 0 4px 6px rgba(0,0,0,0.5);
+}
+
+/* Base Styles */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Header & Nav */
+header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px 30px; background-color: var(--header-bg);
+    box-shadow: var(--shadow); position: sticky; top: 0; z-index: 100;
+}
+header nav { display: flex; align-items: center; gap: 20px; }
+header ul { display: flex; list-style: none; gap: 15px; }
+header a { color: var(--text-color); text-decoration: none; font-weight: bold; }
+header a:hover { color: var(--primary-color); }
+
+/* Toggle Switch */
+.theme-switch-wrapper { display: flex; align-items: center; }
+.theme-switch { position: relative; display: inline-block; width: 50px; height: 24px; margin-right: 10px;}
+.theme-switch input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px;}
+.slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%;}
+input:checked + .slider { background-color: var(--primary-color); }
+input:checked + .slider:before { transform: translateX(26px); }
+
+/* Layout Grid */
+.container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: var(--sidebar-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+    height: fit-content;
+}
+.search-box input {
+    width: 100%; padding: 10px; margin-top: 10px;
+    border: 1px solid var(--border-color); border-radius: 4px;
+    background-color: var(--bg-color); color: var(--text-color);
+}
+.filter-box { margin-top: 20px; }
+.filter-box label { display: block; margin: 8px 0; cursor: pointer; }
+
+/* Movie Grid */
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* Movie Card */
+.movie-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.movie-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+.movie-card img { width: 100%; height: 300px; object-fit: cover; display: block; }
+.movie-info { padding: 15px; }
+.movie-info h3 { margin-bottom: 5px; font-size: 1.1rem; }
+.movie-info p { color: #888; font-size: 0.9rem; }
+
+/* Modal */
+.modal {
+    display: none; position: fixed; z-index: 1000; left: 0; top: 0;
+    width: 100%; height: 100%; overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+    align-items: center; justify-content: center;
+}
+.modal-content {
+    background-color: var(--card-bg); margin: auto; padding: 20px;
+    border-radius: 8px; width: 80%; max-width: 800px; position: relative;
+    display: flex; gap: 20px;
+}
+.close-btn { color: #aaa; position: absolute; top: 10px; right: 20px; font-size: 28px; font-weight: bold; cursor: pointer; }
+.close-btn:hover { color: var(--primary-color); }
+.modal-body { display: flex; gap: 20px; width: 100%; }
+.modal-body img { width: 300px; border-radius: 8px; }
+.modal-details { flex: 1; }
+.modal-details h2 { margin-bottom: 10px; }
+.modal-details p { margin-bottom: 8px; line-height: 1.5; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container { grid-template-columns: 1fr; } /* Stack sidebar lên trên ở mobile */
+    .modal-content { flex-direction: column; width: 95%; }
+    .modal-body { flex-direction: column; }
+    .modal-body img { width: 100%; height: auto; }
+}
