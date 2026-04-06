@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mô tả dự án - Movie Discovery App</title>
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --text-color: #1f2937;
+            --bg-color: #f9fafb;
+            --card-bg: #ffffff;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            padding: 40px 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .container {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        h1 { color: var(--primary-color); border-bottom: 2px solid var(--primary-color); padding-bottom: 10px; }
+        h2 { color: #1e40af; margin-top: 30px; border-left: 5px solid var(--primary-color); padding-left: 15px; }
+        h3 { color: #374151; }
+        ul { margin-bottom: 20px; }
+        li { margin-bottom: 10px; }
+        code {
+            background: #e5e7eb;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .footer { margin-top: 50px; text-align: center; font-style: italic; color: #6b7280; }
+        .back-link { display: inline-block; margin-bottom: 20px; text-decoration: none; color: var(--primary-color); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" class="back-link">← Quay lại Ứng dụng</a>
+
+    <div class="container">
+        <h1>BÁO CÁO MÔ TẢ DỰ ÁN</h1>
+        <p><strong>Tên dự án:</strong> Movie Discovery App (Ứng dụng khám phá phim)</p>
+        <p><strong>Sinh viên thực hiện:</strong> [Nhập Họ Tên Của Bạn]</p>
+        <p><strong>Mã số sinh viên:</strong> [Nhập MSV Của Bạn]</p>
+
+        <h2>1. Bài 1: Giao diện và Bố cục Nâng cao</h2>
+        <ul>
+            <li><strong>Bố cục chính:</strong> Sử dụng <code>CSS Grid</code> để phân chia không gian. Sidebar chiếm cố định 250px bên trái cho bộ lọc, phần còn lại (Main Content) tự động co giãn để hiển thị danh sách phim.</li>
+            <li><strong>Chế độ Sáng/Tối:</strong> Hệ thống sử dụng <code>CSS Variables</code> (biến CSS) để quản lý màu sắc tập trung. Việc chuyển đổi được thực hiện bằng cách thêm/xóa class <code>.dark-mode</code> vào thẻ body thông qua JavaScript.</li>
+            <li><strong>Thiết kế Card:</strong> Các thẻ phim được bo góc, sử dụng <code>object-fit: cover</code> cho ảnh để tránh biến dạng. Hiệu ứng <code>hover</code> kết hợp giữa <code>transform: scale()</code> và <code>box-shadow</code> tạo cảm giác nổi khối sinh động.</li>
+        </ul>
+
+        <h2>2. Bài 2: Xử lý Logic và Dữ liệu</h2>
+        <ul>
+            <li><strong>Hiển thị động:</strong> Dữ liệu phim được quản lý tập trung trong một mảng đối tượng. Hàm <code>displayMovies()</code> chịu trách nhiệm duyệt mảng và render HTML, giúp dễ dàng bảo trì và cập nhật dữ liệu.</li>
+            <li><strong>Bộ lọc Thể loại:</strong> Sử dụng đối tượng <code>Set</code> để trích xuất danh sách thể loại duy nhất từ dữ liệu gốc, đảm bảo tính tự động hóa khi thêm phim mới mà không cần sửa code giao diện.</li>
+            <li><strong>Tìm kiếm & Lọc tích hợp:</strong> Logic lọc được thiết kế để chạy đồng thời (AND logic). Phim hiển thị phải thỏa mãn cả từ khóa tìm kiếm và các thể loại được tick chọn.</li>
+            <li><strong>Tối ưu Debounce:</strong> Áp dụng kỹ thuật <code>Debounce</code> cho ô tìm kiếm với thời gian chờ 400ms. Điều này giúp giảm số lần tính toán và lọc dữ liệu vô ích khi người dùng đang gõ nhanh, tăng hiệu năng cho ứng dụng.</li>
+        </ul>
+
+        <h2>3. Bài 3: Trải nghiệm người dùng</h2>
+        <ul>
+            <li><strong>Modal chi tiết:</strong> Sử dụng kỹ thuật xử lý sự kiện để lấy dữ liệu từ mảng <code>movies</code> dựa trên phim được click. Modal được thiết kế <code>position: fixed</code> để đè lên toàn bộ giao diện, mang lại thông tin chi tiết mà không cần tải lại trang.</li>
+            <li><strong>LocalStorage:</strong> Trạng thái giao diện (Light/Dark mode) được lưu vào bộ nhớ trình duyệt. Khi người dùng tải lại trang, JavaScript sẽ kiểm tra giá trị đã lưu để áp dụng đúng giao diện cũ.</li>
+        </ul>
+
+        <h2>4. Bài 4: Tối ưu và Triển khai</h2>
+        <ul>
+            <li><strong>Tối ưu ảnh:</strong> Các hình ảnh poster đã được nén qua công cụ trực tuyến để giảm dung lượng file xuống mức thấp nhất mà không ảnh hưởng nhiều đến chất lượng hiển thị.</li>
+            <li><strong>Triển khai:</strong> Dự án được đưa lên <code>GitHub Pages</code> (hoặc Vercel/Netlify), hỗ trợ truy cập trực tiếp qua URL công khai.</li>
+        </ul>
+
+        <div class="footer">
+            Bản báo cáo hoàn thành vào ngày 06 tháng 04 năm 2026
+        </div>
+    </div>
+
+</body>
+</html>
