@@ -1,44 +1,56 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <title>Movie Discovery App</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Discovery App</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header>
-    <h1>🎬 Movie App</h1>
-    <label class="switch">
-      <input type="checkbox" id="themeToggle">
-      <span class="slider"></span>
-    </label>
-  </header>
+    <header>
+        <div class="logo">🎬 MovieApp</div>
+        <nav>
+            <ul>
+                <li><a href="MSV_ten_bt34.html">Kết quả BT 34</a></li>
+                <li><a href="mota.html">Mô tả đồ án</a></li>
+            </ul>
+            <div class="theme-switch-wrapper">
+                <label class="theme-switch" for="checkbox">
+                    <input type="checkbox" id="checkbox" />
+                    <span class="slider round"></span>
+                </label>
+                <span id="theme-label">Dark Mode</span>
+            </div>
+        </nav>
+    </header>
 
-  <div class="container">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <input type="text" id="searchInput" placeholder="Tìm phim...">
+    <div class="container">
+        <aside class="sidebar">
+            <div class="search-box">
+                <h3>Tìm kiếm</h3>
+                <input type="text" id="search-input" placeholder="Nhập tên phim...">
+            </div>
+            <div class="filter-box">
+                <h3>Thể loại</h3>
+                <div id="genre-container">
+                    </div>
+            </div>
+        </aside>
 
-      <h3>Thể loại</h3>
-      <div id="genreFilters"></div>
-
-      <hr>
-      <a href="MSV_ten_bt34.html">Bài tập 34</a><br>
-      <a href="mota.html">Mô tả</a>
-    </aside>
-
-    <!-- Main -->
-    <main id="movieList"></main>
-  </div>
-
-  <!-- Modal -->
-  <div id="modal" class="modal hidden">
-    <div class="modal-content">
-      <span id="closeModal">&times;</span>
-      <div id="modalBody"></div>
+        <main class="main-content">
+            <div id="movie-grid" class="movie-grid">
+                </div>
+        </main>
     </div>
-  </div>
 
-  <script src="js/app.js"></script>
+    <div id="movie-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="modal-body" id="modal-body">
+                </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
 </body>
 </html>
